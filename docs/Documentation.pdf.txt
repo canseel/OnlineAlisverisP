@@ -1,0 +1,56 @@
+Online Alışveriş Veritabanı – Dokümantasyon
+1. Proje Amacı
+
+Bu proje, bir online alışveriş sistemi için SQL tabanlı veritabanı tasarımı ve raporlama sorgularını içermektedir.
+Amaç, müşteri, satıcı, ürün, kategori ve sipariş bilgilerini yönetmek ve raporlamaktır.
+
+2. Veritabanı Tasarımı
+
+Veritabanı 6 tablo içerir: Musteri, Satici, Kategori, Urun, Siparis, Siparis_Detay.
+
+
+
+İlişkiler:
+
+Musteri → Siparis (1:M)
+
+Siparis → Siparis_Detay (1:M)
+
+Urun → Siparis_Detay (1:M)
+
+Kategori → Urun (1:M)
+
+Satici → Urun (1:M)
+
+3. Karşılaşılan Sorunlar ve Çözümler
+
+Örnek veri tabanındaki tüm sipariş detaylarının adet değeri 1 olarak girildi. Bu nedenle “en çok sipariş veren müşteri” veya “en çok satılan ürün” gibi raporlar doğru sonuç vermiyordu.
+
+Çözüm: Sipariş adetleri, gerçekçi değerlere güncellendi (UPDATE Siparis_Detay SET adet = ...).
+
+Sipariş sayısı raporu hatalıydı
+
+Sorun: Örnek veri tümü aynı ayda olduğu için ay bazlı rapor yanlış çıkıyordu.
+
+Çözüm: Sorgular, veri tabanındaki mevcut veriler üzerinden ay bazlı sayım yapacak şekilde güncellendi.
+
+Hiç satılmamış ürünler ve sipariş vermemiş müşteriler sorgusu
+
+Sorun: LEFT JOIN kullanımı gerekti.
+
+Çözüm: Sorgular LEFT JOIN ile güncellendi.
+
+Kategori bazlı toplam satışlar
+
+Sorun: Kategori adı yanlış çağrılıyordu.
+
+Çözüm: JOIN ve doğru sütun isimleri ile düzeltildi.
+
+4. Dosya Yapısı
+
+OnlineAlisveris.sql → Tüm SQL sorguları (tablolar, veri ekleme, güncelleme, raporlama)
+
+docs/ER_Diagram.txt → ER diyagramı metin hâli
+
+docs/Documentation.pdf → Bu dokümantasyon
+
