@@ -1,12 +1,12 @@
-CREATE DATABASE OnlineAlısverisP
+CREATE DATABASE OnlineAlisverisP
 
-USE OnlineAlısverisP;
+USE OnlineAlisverisP;
 
---TABLOLAR VE İLİŞKİLER
+--TABLOLAR VE ÃLÃÃKÃLER
 
---Müşteri Tablosu
+--MÃ¼Ã¾teri Tablosu
 CREATE TABLE Musteri (
-   id INT PRIMARY KEY, --her değerin benzersiz olması için
+   id INT PRIMARY KEY, --her deÃ°erin benzersiz olmasÃ½ iÃ§in
    ad NVARCHAR(50),
    soyad NVARCHAR(50),
    email NVARCHAR(50),
@@ -14,7 +14,7 @@ CREATE TABLE Musteri (
    kayit_tarihi DATE
 );
 
---Ürün Tablosu
+--ÃœrÃ¼n Tablosu
 CREATE TABLE Urun (
     id INT PRIMARY KEY,
     ad NVARCHAR(50),
@@ -22,8 +22,8 @@ CREATE TABLE Urun (
     stok INT,
     kategori_id INT,
     satici_id INT,
-    FOREIGN KEY (kategori_id) REFERENCES Kategori(id), --her ürünün bir kategorisi vardır
-    FOREIGN KEY (satici_id) REFERENCES Satici(id) --bir ürün bir satıcıya aittir
+    FOREIGN KEY (kategori_id) REFERENCES Kategori(id), --her Ã¼rÃ¼nÃ¼n bir kategorisi vardÃ½r
+    FOREIGN KEY (satici_id) REFERENCES Satici(id) --bir Ã¼rÃ¼n bir satÃ½cÃ½ya aittir
 );
 
 --Kategori Tablosu
@@ -32,24 +32,24 @@ CREATE TABLE Kategori (
     ad NVARCHAR(50)
 );
 
---Satıcı Tablosu
+--SatÃ½cÃ½ Tablosu
 CREATE TABLE Satici (
     id INT PRIMARY KEY,
     ad NVARCHAR(50),
     adres NVARCHAR(150)
 );
 
---Sipariş Tablosu
+--SipariÃ¾ Tablosu
 CREATE TABLE Siparis (
     id INT PRIMARY KEY,
     musteri_id INT,
     tarih DATE,
     toplam_tutar DECIMAL(10,2),
     odeme_turu NVARCHAR(20),
-    FOREIGN KEY (musteri_id) REFERENCES Musteri(id) --bir müşteri birden fazla sipariş verebilir
+    FOREIGN KEY (musteri_id) REFERENCES Musteri(id) --bir mÃ¼Ã¾teri birden fazla sipariÃ¾ verebilir
 );
 
---Sipariş detayları tablosu
+--SipariÃ¾ detaylarÃ½ tablosu
 CREATE TABLE Siparis_Detay (
     id INT PRIMARY KEY,
     siparis_id INT,
@@ -57,45 +57,45 @@ CREATE TABLE Siparis_Detay (
     adet INT,
     fiyat DECIMAL(10,2),
     FOREIGN KEY (siparis_id) REFERENCES Siparis(id),
-    FOREIGN KEY (urun_id) REFERENCES Urun(id) --bir sipariş birden fazla ürün içerebilir
+    FOREIGN KEY (urun_id) REFERENCES Urun(id) --bir sipariÃ¾ birden fazla Ã¼rÃ¼n iÃ§erebilir
 );
 
---VERİ EKLEME 
+--VERÃ EKLEME 
 
 --Kategoriler
 INSERT INTO Kategori (id, ad) VALUES
-(1,'Elektronik Aletler'), (2,'Ev Eşyaları'), (3,'Ofis Malzemeleri');
+(1,'Elektronik Aletler'), (2,'Ev EÃ¾yalarÃ½'), (3,'Ofis Malzemeleri');
 
---Satıcılar
+--SatÃ½cÃ½lar
 INSERT INTO Satici (id, ad, adres) VALUES
-(1,'Teknocu','İstanbul'),
+(1,'Teknocu','Ãstanbul'),
 (2,'RAFF','Ankara'),
-(3,'Ofisim','İzmir');
+(3,'Ofisim','Ãzmir');
 
---Müşteriler
+--MÃ¼Ã¾teriler
 INSERT INTO Musteri (id, ad, soyad, email, sehir, kayit_tarihi) VALUES
-(1,'Ali','Yılmaz','ali@mail.com','İstanbul','2025-01-15'),
-(2,'Ayşe','Demir','ayse@mail.com','Ankara','2025-02-10'),
-(3,'Mehmet','Kara','mehmet@mail.com','İzmir','2025-03-05'),
+(1,'Ali','YÃ½lmaz','ali@mail.com','Ãstanbul','2025-01-15'),
+(2,'AyÃ¾e','Demir','ayse@mail.com','Ankara','2025-02-10'),
+(3,'Mehmet','Kara','mehmet@mail.com','Ãzmir','2025-03-05'),
 (4,'Fatma','Ak','fatma@mail.com','Bursa','2025-01-20'),
-(5,'Ahmet','Çelik','ahmet@mail.com','Antalya','2025-02-12'),
-(6,'Elif','Kaya','elif@mail.com','İstanbul','2025-03-22'),
-(7,'Hakan','Öztürk','hakan@mail.com','Ankara','2025-01-30'),
-(8,'Zeynep','Şahin','zeynep@mail.com','İzmir','2025-02-18'),
-(9,'Can','Koç','can@mail.com','Bursa','2025-03-10'),
+(5,'Ahmet','Ã‡elik','ahmet@mail.com','Antalya','2025-02-12'),
+(6,'Elif','Kaya','elif@mail.com','Ãstanbul','2025-03-22'),
+(7,'Hakan','Ã–ztÃ¼rk','hakan@mail.com','Ankara','2025-01-30'),
+(8,'Zeynep','Ãahin','zeynep@mail.com','Ãzmir','2025-02-18'),
+(9,'Can','KoÃ§','can@mail.com','Bursa','2025-03-10'),
 (10,'Merve','Arslan','merve@mail.com','Antalya','2025-01-25'),
-(11,'Emre','Yıldız','emre@mail.com','İstanbul','2025-02-05'),
+(11,'Emre','YÃ½ldÃ½z','emre@mail.com','Ãstanbul','2025-02-05'),
 (12,'Selin','Polat','selin@mail.com','Ankara','2025-03-12'),
-(13,'Burak','Aydın','burak@mail.com','İzmir','2025-01-28'),
+(13,'Burak','AydÃ½n','burak@mail.com','Ãzmir','2025-01-28'),
 (14,'Ece','Kurt','ece@mail.com','Bursa','2025-02-15'),
-(15,'Okan','Özdemir','okan@mail.com','Antalya','2025-03-20'),
-(16,'Deniz','Güneş','deniz@mail.com','İstanbul','2025-01-10'),
+(15,'Okan','Ã–zdemir','okan@mail.com','Antalya','2025-03-20'),
+(16,'Deniz','GÃ¼neÃ¾','deniz@mail.com','Ãstanbul','2025-01-10'),
 (17,'Seda','Bulut','seda@mail.com','Ankara','2025-02-08'),
-(18,'Tunç','Çetin','tunc@mail.com','İzmir','2025-03-25'),
-(19,'Derya','Koçak','derya@mail.com','Bursa','2025-01-18'),
-(20,'Barış','Yalçın','baris@mail.com','Antalya','2025-02-22');
+(18,'TunÃ§','Ã‡etin','tunc@mail.com','Ãzmir','2025-03-25'),
+(19,'Derya','KoÃ§ak','derya@mail.com','Bursa','2025-01-18'),
+(20,'BarÃ½Ã¾','YalÃ§Ã½n','baris@mail.com','Antalya','2025-02-22');
 
---Ürünler
+--ÃœrÃ¼nler
 INSERT INTO Urun (id, ad, fiyat, stok, kategori_id, satici_id) VALUES
 (1,'Laptop',7500,10,1,1),
 (2,'Mouse',150,50,1,1),
@@ -114,30 +114,30 @@ INSERT INTO Urun (id, ad, fiyat, stok, kategori_id, satici_id) VALUES
 (15,'External HDD',950,22,1,1);
 
 
--- Siparişler (20 adet)
+-- SipariÃ¾ler (20 adet)
 INSERT INTO Siparis (id, musteri_id, tarih, toplam_tutar, odeme_turu) VALUES
-(1,1,'2025-09-01',9150,'Kredi Kartı'),
+(1,1,'2025-09-01',9150,'Kredi KartÃ½'),
 (2,2,'2025-09-02',1200,'Nakit'),
-(3,3,'2025-09-02',1800,'Kredi Kartı'),
+(3,3,'2025-09-02',1800,'Kredi KartÃ½'),
 (4,4,'2025-09-03',500,'Nakit'),
-(5,5,'2025-09-04',4200,'Kredi Kartı'),
+(5,5,'2025-09-04',4200,'Kredi KartÃ½'),
 (6,6,'2025-09-04',950,'Nakit'),
-(7,7,'2025-09-05',2500,'Kredi Kartı'),
+(7,7,'2025-09-05',2500,'Kredi KartÃ½'),
 (8,8,'2025-09-06',1350,'Nakit'),
-(9,9,'2025-09-06',750,'Kredi Kartı'),
+(9,9,'2025-09-06',750,'Kredi KartÃ½'),
 (10,10,'2025-09-07',1800,'Nakit'),
-(11,11,'2025-09-08',500,'Kredi Kartı'),
+(11,11,'2025-09-08',500,'Kredi KartÃ½'),
 (12,12,'2025-09-08',6500,'Nakit'),
-(13,13,'2025-09-09',4200,'Kredi Kartı'),
+(13,13,'2025-09-09',4200,'Kredi KartÃ½'),
 (14,14,'2025-09-10',400,'Nakit'),
-(15,15,'2025-09-10',850,'Kredi Kartı'),
+(15,15,'2025-09-10',850,'Kredi KartÃ½'),
 (16,16,'2025-09-11',1200,'Nakit'),
-(17,17,'2025-09-11',350,'Kredi Kartı'),
+(17,17,'2025-09-11',350,'Kredi KartÃ½'),
 (18,18,'2025-09-12',1400,'Nakit'),
-(19,19,'2025-09-13',950,'Kredi Kartı'),
+(19,19,'2025-09-13',950,'Kredi KartÃ½'),
 (20,20,'2025-09-14',6500,'Nakit');
 
--- Sipariş Detayları
+-- SipariÃ¾ DetaylarÃ½
 INSERT INTO Siparis_Detay (id, siparis_id, urun_id, adet, fiyat) VALUES
 (1,1,1,1,7500),
 (2,1,2,1,1500),
@@ -160,12 +160,12 @@ INSERT INTO Siparis_Detay (id, siparis_id, urun_id, adet, fiyat) VALUES
 (19,18,10,1,1400),
 (20,19,15,1,950);
 
---GÜNCELLEME
+--GÃœNCELLEME
 
---Müşteri tablosunda id değeri 1 olan müşterinin şehir bilgisini İzmir olarak güncellenmeli ise
-UPDATE Musteri SET sehir='İzmir' WHERE id=1;
+--MÃ¼Ã¾teri tablosunda id deÃ°eri 1 olan mÃ¼Ã¾terinin Ã¾ehir bilgisini Ãzmir olarak gÃ¼ncellenmeli ise
+UPDATE Musteri SET sehir='Ãzmir' WHERE id=1;
 
-UPDATE Siparis_Detay SET adet= 2 WHERE id=1; --sordularda mantıklı sonuçlar çıkması için verileri güncelliyorum
+UPDATE Siparis_Detay SET adet= 2 WHERE id=1; --sordularda mantÃ½klÃ½ sonuÃ§lar Ã§Ã½kmasÃ½ iÃ§in verileri gÃ¼ncelliyorum
 
 UPDATE Siparis_Detay SET adet= 3 WHERE id=2;
 
@@ -179,14 +179,14 @@ UPDATE Siparis_Detay SET adet= 11 WHERE id=19;
 
 UPDATE Siparis_Detay SET adet= 7 WHERE id=16;
 
---Sipariş tablosunda id değeri 20 olan siparişi tablodan tamamen silinmeli ise
+--SipariÃ¾ tablosunda id deÃ°eri 20 olan sipariÃ¾i tablodan tamamen silinmeli ise
 DELETE FROM Siparis WHERE id=20;
 
--- TRUNCATE TABLE Siparis;  Siparis tablosundaki tüm verileri siler, çalıştırma!
+-- TRUNCATE TABLE Siparis;  Siparis tablosundaki tÃ¼m verileri siler, Ã§alÃ½Ã¾tÃ½rma!
 
---VERİ SORGULAMA VE RAPORLAMA
+--VERÃ SORGULAMA VE RAPORLAMA
 
---En çok sipariş veren 5 müşteri
+--En Ã§ok sipariÃ¾ veren 5 mÃ¼Ã¾teri
 
  SELECT TOP 5
     Musteri.id,
@@ -199,7 +199,7 @@ JOIN Siparis_Detay ON Siparis.id = Siparis_Detay.siparis_id
 GROUP BY Musteri.id, Musteri.ad, Musteri.soyad
 ORDER BY SUM(Siparis_Detay.adet) DESC;
 
--- En çok satılan ürünler
+-- En Ã§ok satÃ½lan Ã¼rÃ¼nler
 
 SELECT TOP 5
     Urun.ad AS Urun_Adi,
@@ -209,7 +209,7 @@ JOIN Siparis_Detay ON Urun.id = Siparis_Detay.urun_id
 GROUP BY Urun.ad
 ORDER BY SUM(Siparis_Detay.adet) DESC;
 
--- En yüksek cirosu olan satıcılar
+-- En yÃ¼ksek cirosu olan satÃ½cÃ½lar
 
 SELECT TOP 2
     Satici.ad AS Satici_Adi,
@@ -220,7 +220,7 @@ JOIN Siparis_Detay ON Urun.id = Siparis_Detay.urun_id
 GROUP BY Satici.ad
 ORDER BY SUM(Siparis_Detay.adet * Siparis_Detay.fiyat) DESC;
 
--- Şehirlere göre müşteri sayısı
+-- Ãehirlere gÃ¶re mÃ¼Ã¾teri sayÃ½sÃ½
 
 SELECT 
     sehir AS Sehir,
@@ -229,19 +229,19 @@ FROM Musteri
 GROUP BY sehir
 ORDER BY COUNT(id) DESC;
 
--- Kategori bazlı toplam satışlar
+-- Kategori bazlÃ½ toplam satÃ½Ã¾lar
 
 
 SELECT 
     Kategori.ad AS Kategori,
     ISNULL(SUM(Siparis_Detay.adet * Urun.fiyat), 0) AS Toplam_Satis
 FROM Kategori
-LEFT JOIN Urun ON Urun.kategori_id = Kategori.id --satışı olmayan kategorileri görmek adına
+LEFT JOIN Urun ON Urun.kategori_id = Kategori.id --satÃ½Ã¾Ã½ olmayan kategorileri gÃ¶rmek adÃ½na
 LEFT JOIN Siparis_Detay ON Urun.id = Siparis_Detay.urun_id
 GROUP BY Kategori.ad
 ORDER BY Toplam_Satis DESC;
 
--- Aylara göre sipariş sayısı
+-- Aylara gÃ¶re sipariÃ¾ sayÃ½sÃ½
 
 SELECT 
     SUM(CASE WHEN MONTH(tarih) = 1 THEN 1 ELSE 0 END) AS Ocak,
@@ -259,8 +259,8 @@ SELECT
 FROM Siparis
 WHERE YEAR(tarih) = 2025;
 
---kodu çalıştırdığımda hazır olarak aldığım verinin tek bir yalnız eylül ayını içerdiğini fark ettiğim için verileri değiştirme kararı aldım
--- güncelleme
+--kodu Ã§alÃ½Ã¾tÃ½rdÃ½Ã°Ã½mda hazÃ½r olarak aldÃ½Ã°Ã½m verinin tek bir yalnÃ½z eylÃ¼l ayÃ½nÃ½ iÃ§erdiÃ°ini fark ettiÃ°im iÃ§in verileri deÃ°iÃ¾tirme kararÃ½ aldÃ½m
+-- gÃ¼ncelleme
 
 UPDATE Siparis SET tarih = '2025-01-05' WHERE id = 1;
 UPDATE Siparis SET tarih = '2025-02-10' WHERE id = 2;
@@ -283,7 +283,7 @@ UPDATE Siparis SET tarih = '2025-06-15' WHERE id = 18;
 UPDATE Siparis SET tarih = '2025-07-20' WHERE id = 19;
 UPDATE Siparis SET tarih = '2025-08-25' WHERE id = 20;
 
---Siparişlerde müşteri bilgisi + ürün bilgisi + satıcı bilgisi.
+--SipariÃ¾lerde mÃ¼Ã¾teri bilgisi + Ã¼rÃ¼n bilgisi + satÃ½cÃ½ bilgisi.
 
 SELECT 
     Siparis.id AS Siparis_ID,
@@ -300,7 +300,7 @@ JOIN Urun ON Siparis_Detay.urun_id = Urun.id
 JOIN Satici ON Urun.satici_id = Satici.id
 ORDER BY Siparis.id;
 
--- Hiç satılmamış ürünler
+-- HiÃ§ satÃ½lmamÃ½Ã¾ Ã¼rÃ¼nler
 
 SELECT 
     Urun.id AS Urun_ID,
@@ -311,7 +311,7 @@ FROM Urun
 LEFT JOIN Siparis_Detay ON Urun.id = Siparis_Detay.urun_id
 WHERE Siparis_Detay.urun_id IS NULL;
 
--- Hiç sipariş vermemiş müşteriler
+-- HiÃ§ sipariÃ¾ vermemiÃ¾ mÃ¼Ã¾teriler
 
 SELECT 
     Musteri.id AS Musteri_ID,
@@ -323,7 +323,7 @@ FROM Musteri
 LEFT JOIN Siparis ON Musteri.id = Siparis.musteri_id
 WHERE Siparis.musteri_id IS NULL;
 
--- En çok kazanç sağlayan ilk 3 kategori
+-- En Ã§ok kazanÃ§ saÃ°layan ilk 3 kategori
 
 SELECT TOP 3
     Kategori.ad AS Kategori_Adi,
@@ -334,7 +334,7 @@ JOIN Kategori ON Urun.kategori_id = Kategori.id
 GROUP BY Kategori.ad
 ORDER BY Toplam_Kazanc DESC;
 
--- En az bir kez elektronik ürün satın alan müşteriler
+-- En az bir kez elektronik Ã¼rÃ¼n satÃ½n alan mÃ¼Ã¾teriler
 
 SELECT DISTINCT
     Musteri.id AS Musteri_ID,
